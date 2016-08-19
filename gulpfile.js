@@ -13,7 +13,7 @@ var gulp = require('gulp'),
   imagemin = require('gulp-imagemin')
 
 
-gulp.task('testLess', function() {
+gulp.task('less', function() {
   gulp.src('public/stylesheets/**/*.less')
     .pipe(plumber({
       errorHandler: notify.onError('Error: <%= error.message %>')
@@ -41,14 +41,6 @@ gulp.task('testLess', function() {
     }))
     .pipe(gulp.dest('public/stylesheets/'));
 });
-gulp.task('prefixer', function () {
-    //找到src目录下app.css，为其补全浏览器兼容的css
-     gulp.src('public/stylesheets/**/*.less')
-        .pipe(sourcemaps.init())
-        .pipe(less())
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('public/stylesheets/'));
-});
 
 
 gulp.task('browser-sync',function () {
@@ -62,9 +54,9 @@ gulp.task('browser-sync',function () {
 });
 
 gulp.task('testWatch', function() {
-  gulp.watch('public/stylesheets/**/*.less', ['testLess']);
+  gulp.watch('public/stylesheets/**/*.less', ['less']);
 });
 
-gulp.task('default', ['browser-sync', 'testLess'], function () {
-  gulp.watch(['public/stylesheets/**/*.less', 'views/**/*.*'], ['testLess']);
+gulp.task('default', ['browser-sync', 'less'], function () {
+  gulp.watch(['public/stylesheets/**/*.less', 'views/**/*.*'], ['less']);
 });
