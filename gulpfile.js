@@ -53,10 +53,8 @@ gulp.task('browser-sync',function () {
   });
 });
 
-gulp.task('testWatch', function() {
-  gulp.watch('public/stylesheets/**/*.less', ['less']);
-});
 
-gulp.task('default', ['browser-sync', 'less'], function () {
-  gulp.watch(['public/stylesheets/**/*.less', 'views/**/*.*'], ['less']);
+
+gulp.task('default', ['browser-sync'], function () {
+  gulp.watch(['public/stylesheets/**/*.less'], ['less']);
 });
